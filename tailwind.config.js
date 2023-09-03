@@ -28,6 +28,10 @@ export default {
         featuredBoxShadow:
           "0px 2px 1px -1px rgba(0,0,0,0.2), 0px 1px 1px 0px rgba(0,0,0,0.14), 0px 1px 3px 0px rgba(0,0,0,0.12)",
       },
+      flex: {
+        "1/4": "0 0 25%",
+        "1/5": "0 0 20%",
+      },
     },
   },
   plugins: [],

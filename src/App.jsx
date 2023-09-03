@@ -1,6 +1,7 @@
 import Header from "./components/Header";
-import ShowsData from "./components/ShowsData";
+import ShowsData from "./constants/showsData";
 import FeaturedShows from "./components/FeaturedShows";
+import ListOfShows from "./components/ListOfShows/ListOfShows";
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 const App = () => {
   console.log(
@@ -22,7 +23,12 @@ const App = () => {
     );
   };
   const Home = () => {
-    return <FeaturedShows />;
+    return (
+      <main>
+        <FeaturedShows />
+        <ListOfShows />
+      </main>
+    );
   };
 
   return (

@@ -4,8 +4,8 @@ import {
   lordsImage,
   aquamanImage,
   amsterdamImage,
-  potcImage,
-  duneImage,
+  // potcImage,
+  // duneImage,
 } from "../assets/images";
 const featuredShowData = [
   {

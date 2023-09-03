@@ -19,4 +19,22 @@
   .customButton {
     @apply bg-buttonBackground font-bold text-xs px-6 py-2 rounded-lg hover:opacity-80 transition-opacity duration-200;
   }
+  .smooth-scroll {
+    scroll-behavior: smooth;
+  }
+  .snap-inline {
+    scroll-snap-type: inline mandatory;
+    scroll-padding-inline: 1rem;
+  }
+  .no-scrollbar {
+    display: none;
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* Internet Explorer/Edge */
+  }
+
+  /* Hide scrollbar for WebKit (Chrome, Safari) */
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+    width: 0.5em;
+  }
 }

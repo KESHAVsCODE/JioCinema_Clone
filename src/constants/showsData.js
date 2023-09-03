@@ -1,54 +1,4 @@
-const allShowsData = [];
-
-const featuredShowsImages = [
-  "Dune64_cffee900bad552e8dcda76",
-  "Pirates of the Caribbean: The Legend of Jack Sparrow_64cffeee00bad552e8dce9fc",
-  "shrek",
-  "The Burnt Orange Heresy_64cffeee00bad552e8dce8d4",
-];
-
-const data = async () => {
-  // for (let i = 1; i < 11; i++) {
-  //   (async () => {
-  //     const response = await fetch(
-  //       `https://academics.newtonschool.co/api/v1/ott/show?projectId=f104bi07c490&page=${i}&limit=10`
-  //     );
-  //     const data = await response.json();
-  //     allShowsData.push(...data);
-  //   })();
-  // }
-  const response = await fetch(
-    `https://academics.newtonschool.co/api/v1/ott/show?page=${1}&limit=10000`,
-    {
-      method: "GET",
-      headers: {
-        projectId: "f104bi07c490",
-      },
-    }
-  );
-  //97990 93060
-
-  const data = await response.json();
-
-  const shows = data?.data.filter((show) =>
-    featuredShowsImages.includes(show.title)
-  );
-
-  console.log(shows);
-
-  console.log(
-    "hi",
-    data?.data.reduce(
-      (acc, show) =>
-        !acc.includes(show.title) ? acc.push(show.title) && acc : acc,
-      []
-    )
-  );
-
-  console.log(data);
-};
-data();
-const ShowsData = {
+const showsData = {
   status: "success",
   results: 100,
   data: [
@@ -1651,4 +1601,4 @@ const ShowsData = {
   ],
 };
 
-export default ShowsData;
+export default showsData;
