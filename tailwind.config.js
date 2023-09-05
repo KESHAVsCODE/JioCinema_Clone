@@ -20,9 +20,13 @@ export default {
       textColor: {
         defaultTextColor: "#aaa",
         premiumColor: "rgb(193,163,98)",
+        pink: "#d9008d",
       },
+
       borderColor: {
         premiumColor: "rgb(193,163,98)",
+        defaultBorderColor: "#aaa",
+        pink: "#d9008d",
       },
       boxShadow: {
         featuredBoxShadow:

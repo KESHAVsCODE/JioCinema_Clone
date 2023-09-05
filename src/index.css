@@ -7,6 +7,9 @@
   .active {
     @apply border border-white rounded-3xl;
   }
+  .sideBarItems {
+    @apply text-sm leading-4 font-bold flex items-center justify-between  pt-3 pr-5 pb-3 pl-9 text-white hover:bg-[#ccc] hover:bg-opacity-20 transition-colors duration-150 ease-linear cursor-pointer;
+  }
   .gradient-bg {
     background-image: linear-gradient(
         180deg,

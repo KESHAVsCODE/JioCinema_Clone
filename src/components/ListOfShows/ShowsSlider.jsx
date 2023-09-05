@@ -1,22 +1,39 @@
+/* eslint-disable react/prop-types */
 // import showsData from "../../constants/showsData";
-import { useEffect, useRef, useState } from "react";
-const ShowsSlider = () => {
+import { useCallback, useRef, useState } from "react";
+import { Oval } from "react-loader-spinner";
+import useGetShows from "../../hooks/useGetShows";
+const ShowsSlider = ({ limit = 10, type = "" }) => {
   const sliderRef = useRef(null);
+  const [page, setPage] = useState(1);
 
-  const [showsData, setShowsData] = useState(null);
-  useEffect(() => {
-    (async () => {
-      const response = await fetch(
-        `https://academics.newtonschool.co/api/v1/ott/show?type=web series&page=${1}&limit=${10}`,
-        { method: "GET", headers: { projectId: "f104bi07c490" } }
+  const { isLoading, showsData, error, hasNextPage } = useGetShows(
+    page,
+    limit,
+    type
+  );
+
+  const observer = useRef();
+
+  //when lastShowRef corresponding element created then this callback will be called
+  const lastShowRef = useCallback(
+    (element) => {
+      if (isLoading) return;
+
+      if (observer.current) observer.current.disconnect();
+      observer.current = new IntersectionObserver(
+        (entries) => {
+          if (entries[0].isIntersecting && hasNextPage) {
+            setPage((prevPage) => prevPage + 1);
+          }
+        },
+        { threshold: 1 }
       );
-      const data = await response.json();
-      console.log(data);
-      setShowsData(data?.data);
-    })();
-  }, []);
 
-  console.dir(sliderRef.current);
+      if (element) observer.current.observe(element);
+    },
+    [isLoading, hasNextPage]
+  );
 
   const handlePrevClick = () => {
     sliderRef.current.scrollLeft -= sliderRef.current.offsetWidth;
@@ -24,8 +41,8 @@ const ShowsSlider = () => {
 
   const handleNextClick = () => {
     sliderRef.current.scrollLeft += sliderRef.current.offsetWidth;
-    setCount((prev) => prev + 1);
   };
+  console.log(showsData.length);
 
   return (
     <section
@@ -36,7 +53,7 @@ const ShowsSlider = () => {
         onClick={handlePrevClick}
         className={`flex
         
-          absolute  opacity-0 group-hover:opacity-100 bg-gradient-to-r from-[#222] z-[100] top-0 bottom-0 left-0  px-2 items-center transition-opacity duration-300 ease-linear cursor-pointer`}
+          absolute opacity-0 group-hover:opacity-100 bg-gradient-to-r from-[#222] z-[100] top-0 bottom-0 left-0  px-2 items-center transition-opacity duration-300 ease-linear cursor-pointer`}
       >
         <i className="fa-solid fa-angle-left text-white text-3xl"></i>
       </div>
@@ -44,18 +61,52 @@ const ShowsSlider = () => {
       <ul
         ref={sliderRef}
         name="slider"
-        className="grid grid-flow-col auto-cols-[27%] sm:auto-cols-[17%] lg:auto-cols-[11%] px-4 gap-4 overflow-x-scroll overscroll-contain smooth-scroll snap-inline no-scrollbar"
+        className="grid grid-flow-col auto-cols-[27%] sm:auto-cols-[17%] lg:auto-cols-[11%] px-4 gap-4 overflow-x-scroll overscroll-contain smooth-scroll no-scrollbar snap-inline"
       >
-        {showsData?.map((show) => {
+        {showsData?.map((show, index) => {
+          if (index === showsData.length - 10) {
+            return (
+              <li
+                ref={lastShowRef}
+                key={show.id}
+                id={show.id}
+                className="snap-start shadow-2xl"
+              >
+                <img
+                  src={show.thumbnail}
+                  className="aspect-[3/4]  object-cover rounded-xl cursor-pointer"
+                />
+              </li>
+            );
+          }
           return (
-            <li key={show.id} id={show.id} className=" snap-start">
+            <li key={show.id} id={show.id} className="snap-start">
               <img
                 src={show.thumbnail}
-                className="aspect-[3/4]  object-cover rounded-xl cursor-pointer"
+                className="aspect-[3/4] object-center object-cover rounded-xl cursor-pointer"
               />
             </li>
           );
         })}
+        {isLoading && (
+          <li key="loading" className=" self-center ">
+            <Oval
+              height={50}
+              width={50}
+              color="#d9008d"
+              wrapperStyle={{}}
+              wrapperClass=""
+              visible={true}
+              ariaLabel="oval-loading"
+              secondaryColor="##d9008d"
+              strokeWidth={4}
+              strokeWidthSecondary={4}
+            />
+          </li>
+        )}
+        {error && (
+          <p className="text-lg text-rose-700">{error?.data?.message}</p>
+        )}
       </ul>
 
       <div
