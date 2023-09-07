@@ -46,7 +46,7 @@ const FeaturedShows = () => {
                 </div>
                 <div className="w-[100%] mdl:w-[60%] relative">
                   <img src={show.image} alt="show-image" />
-                  <div className="absolute w-full h-full top-0   gradient-bg"></div>
+                  <div className="absolute w-full h-full top-0 gradient-bg"></div>
                 </div>
               </li>
             );

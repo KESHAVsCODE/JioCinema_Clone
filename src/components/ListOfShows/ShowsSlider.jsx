@@ -3,15 +3,16 @@
 import { useCallback, useRef, useState } from "react";
 import { Oval } from "react-loader-spinner";
 import useGetShows from "../../hooks/useGetShows";
+import { Link } from "react-router-dom";
 const ShowsSlider = ({ limit = 10, type = "" }) => {
   const sliderRef = useRef(null);
   const [page, setPage] = useState(1);
 
-  const { isLoading, showsData, error, hasNextPage } = useGetShows(
+  const { isLoading, showsData, error, hasNextPage } = useGetShows({
     page,
     limit,
-    type
-  );
+    type,
+  });
 
   const observer = useRef();
 
@@ -42,7 +43,7 @@ const ShowsSlider = ({ limit = 10, type = "" }) => {
   const handleNextClick = () => {
     sliderRef.current.scrollLeft += sliderRef.current.offsetWidth;
   };
-  console.log(showsData.length);
+  // console.log(showsData.length);
 
   return (
     <section
@@ -68,23 +69,28 @@ const ShowsSlider = ({ limit = 10, type = "" }) => {
             return (
               <li
                 ref={lastShowRef}
-                key={show.id}
-                id={show.id}
+                key={show._id}
                 className="snap-start shadow-2xl"
               >
-                <img
-                  src={show.thumbnail}
-                  className="aspect-[3/4]  object-cover rounded-xl cursor-pointer"
-                />
+                <Link to={`${show.type}/${show.title}/${show._id}`}>
+                  <img
+                    id={show._id}
+                    src={show.thumbnail}
+                    className="aspect-[3/4]  object-cover rounded-xl cursor-pointer"
+                  />
+                </Link>
               </li>
             );
           }
           return (
-            <li key={show.id} id={show.id} className="snap-start">
-              <img
-                src={show.thumbnail}
-                className="aspect-[3/4] object-center object-cover rounded-xl cursor-pointer"
-              />
+            <li key={show._id} className="snap-start">
+              <Link to={`${show.type}/${show.title}/${show._id}`}>
+                <img
+                  id={show._id}
+                  src={show.thumbnail}
+                  className="aspect-[3/4] object-center object-cover rounded-xl cursor-pointer"
+                />
+              </Link>
             </li>
           );
         })}

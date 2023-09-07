@@ -11,21 +11,21 @@ const SideBar = ({ setSideBarVisible: { closeSideBar, sideBarRef } }) => {
   return (
     <section
       name="sidebar "
-      className="w-[100vw] h-[100vh] fixed top-0 left-0 bg-defaultBackground bg-opacity-90 z-[9999]"
+      className="w-[100%] h-[100%] fixed top-0 left-0 bg-defaultBackground bg-opacity-90 z-[999] "
     >
       <motion.div
         ref={sideBarRef}
-        initial={{ x: "-100%", opacity: 0 }}
+        initial={{ x: "100%", opacity: 0 }}
         animate={{ x: 0, opacity: 1 }}
         transition={{ duration: 0.5 }}
-        className="w-[80%] md:w-[365px] h-full bg-defaultBackground border border-black absolute top-0 right-0"
+        className="w-[80%] md:w-[365px] h-full bg-defaultBackground border border-black absolute top-0 right-0 z-[999]"
       >
         <section
           name="user-info"
-          className=" text-white h-[50px] flex items-center relative cursor-pointer hover:opacity-90"
+          className=" text-white h-[50px] flex items-center relative"
         >
           <div
-            className="flex items-center w-full"
+            className="flex items-center w-full h-full hover:bg-buttonBackground hover:bg-opacity-1 transition-colors duration-150 ease-linear cursor-pointer"
             onClick={(e) => {
               e.stopPropagation();
               navigate(
@@ -45,9 +45,8 @@ const SideBar = ({ setSideBarVisible: { closeSideBar, sideBarRef } }) => {
             </p>
           </div>
           <span
-            className="absolute text-white  -right-2 "
+            className="flex border px-[10px] py-2 absolute text-white -left-[10px]  transform -translate-x-[100%]  hover:text-pink hover:border-pink transition-colors duration-200 ease-linear cursor-pointer"
             onClick={closeSideBar}
-            style={{ transform: "translateX(100%)" }}
           >
             <i className="fa-solid fa-x"></i>
           </span>

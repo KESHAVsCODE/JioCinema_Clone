@@ -2,18 +2,25 @@ import { jiocinema_logo, profile_avatar } from "../../assets/images";
 import { NavLink } from "react-router-dom";
 import useToggleComponent from "../../hooks/useToggleComponent";
 import SideBar from "./SideBar";
+import { useEffect } from "react";
 const Header = () => {
   const [sideBar, setSideBar, sideBarRef] = useToggleComponent(false);
 
   const openSideBar = (e) => {
     e.stopPropagation();
-
     setSideBar(true);
   };
 
   const closeSideBar = () => {
     setSideBar(false);
   };
+  useEffect(() => {
+    if (sideBar) {
+      document.body.classList.add("overflow-hidden");
+    } else {
+      document.body.classList.remove("overflow-hidden");
+    }
+  }, [sideBar]);
 
   return (
     <>
@@ -24,11 +31,13 @@ const Header = () => {
               <i className="fa-solid fa-bars text-2xl cursor-pointer"></i>
             </li>
             <li>
-              <img
-                src={jiocinema_logo}
-                alt="website-logo"
-                className=" cursor-pointer w-32"
-              />
+              <NavLink to="/">
+                <img
+                  src={jiocinema_logo}
+                  alt="website-logo"
+                  className=" cursor-pointer w-32"
+                />
+              </NavLink>
             </li>
             <li className="hidden xs:inline-block relative">
               <button className="text-premiumColor px-4 py-1 text-xs font-medium border-2 border-premiumColor rounded-3xl">
@@ -38,21 +47,53 @@ const Header = () => {
           </ul>
           <ul className="hidden gap-4 mdl:flex items-center md text-white text-sm font-semibold">
             <li className="">
-              <NavLink to="/" className="p-3 border rounded-3xl">
+              <NavLink
+                to="."
+                className={({ isActive }) =>
+                  isActive
+                    ? `p-3 shadow-navLinkShadow transition-shadow rounded-3xl`
+                    : `p-3`
+                }
+              >
                 For You
               </NavLink>
             </li>
             <li>
-              <NavLink to="" className="p-3 border rounded-3xl">
+              <NavLink
+                to="movie"
+                className={({ isActive }) =>
+                  isActive
+                    ? `shadow-navLinkShadow transition-shadow rounded-3xl`
+                    : `p-3 `
+                }
+              >
                 Movies
               </NavLink>
             </li>
             <li>
-              <NavLink className="p-3 border rounded-3xl">Shows</NavLink>
+              <NavLink
+                to="tv show"
+                className={({ isActive }) =>
+                  isActive
+                    ? `p-3 shadow-navLinkShadow transition-shadow rounded-3xl`
+                    : `p-3 `
+                }
+              >
+                Shows
+              </NavLink>
             </li>
 
             <li>
-              <NavLink className="p-3 border rounded-3xl">Premium</NavLink>
+              <NavLink
+                to="trailer"
+                className={({ isActive }) =>
+                  isActive
+                    ? `p-3 shadow-navLinkShadow transition-shadow rounded-3xl`
+                    : `p-3 `
+                }
+              >
+                Premium
+              </NavLink>
             </li>
           </ul>
         </nav>
