@@ -3,6 +3,10 @@ import FeaturedShows from "./components/FeaturedShows";
 import ListOfShows from "./components/ListOfShows/ListOfShows";
 import MediaShowcase from "./components/MediaShowcase";
 import ShowType from "./components/ShowType";
+import Footer from "./components/Footer/Footer";
+import Signin from "./components/Signin/Signin";
+import Registration from "./components/Signin/Registration";
+import Subscription from "./components/Subscription/Subscription";
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 const App = () => {
   const CustomLayout = () => {
@@ -12,6 +16,7 @@ const App = () => {
         <main>
           <Outlet />
         </main>
+        <Footer />
       </>
     );
   };
@@ -39,6 +44,9 @@ const App = () => {
               element={<MediaShowcase />}
             />
           </Route>
+          <Route path="/signin" element={<Signin />} />
+          <Route path="/register" element={<Registration />} />
+          <Route path="/subscription" element={<Subscription />} />
         </Routes>
       </div>
     </BrowserRouter>

@@ -8,6 +8,10 @@ import amsterdamImage from "./featuredShowImages/new-amsterdam.webp";
 import potcImage from "./featuredShowImages/POTC.webp";
 import rocketryImage from "./featuredShowImages/rocketry.jpg";
 import taaliImage from "./featuredShowImages/taali.webp";
+import appleStore from "./appleStore.svg";
+import googlePlayStore from "./googlePlayStore.svg";
+import jioLogo from "./jio-logo.png";
+import subscriptionPageBg from "./subscriptionPageBg.png";
 
 export {
   jiocinema_logo,
@@ -19,4 +23,8 @@ export {
   potcImage,
   rocketryImage,
   taaliImage,
+  appleStore,
+  googlePlayStore,
+  jioLogo,
+  subscriptionPageBg,
 };

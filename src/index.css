@@ -29,8 +29,15 @@
       linear-gradient(180deg, rgba(13, 14, 16, 0) 42.57%, #0d0e10 100%),
       linear-gradient(to right, rgba(13, 14, 16, 0) 62.57%, #0d0e10 100%);
   }
+  .premium-gradient {
+    background: radial-gradient(
+      86.28% 289.13% at 50% 50%,
+      rgb(87, 0, 91) 0%,
+      rgb(48, 13, 49) 50%
+    );
+  }
   .customButton {
-    @apply bg-buttonBackground font-bold text-xs px-6 py-2 rounded-lg hover:opacity-80 transition-opacity duration-200;
+    @apply bg-buttonBackground text-white font-bold text-xs px-6 py-2 rounded-lg hover:opacity-80 transition-opacity duration-200;
   }
   .smooth-scroll {
     scroll-behavior: smooth;
@@ -48,5 +55,16 @@
   .no-scrollbar::-webkit-scrollbar {
     display: none;
     width: 0.5em;
+  }
+  .inputBox {
+    @apply bg-[#333] w-full border border-zinc-400 rounded px-2 py-1 text-sm
+            outline-none focus-within:border-pink focus-within:shadow-focusInputBoxShadow duration-100
+            placeholder:text-[13px] font-normal placeholder:text-inputPlaceholderColor;
+  }
+  .errorSign {
+    @apply text-base font-bold italic text-error;
+  }
+  .defaultLink {
+    @apply text-blue-600  hover:text-orange-700 hover:underline cursor-pointer;
   }
 }

@@ -40,9 +40,11 @@ const Header = () => {
               </NavLink>
             </li>
             <li className="hidden xs:inline-block relative">
-              <button className="text-premiumColor px-4 py-1 text-xs font-medium border-2 border-premiumColor rounded-3xl">
-                Subscribe
-              </button>
+              <NavLink to="subscription">
+                <button className="text-premiumColor px-4 py-1 text-xs font-medium border-2 border-premiumColor rounded-3xl">
+                  Subscribe
+                </button>
+              </NavLink>
             </li>
           </ul>
           <ul className="hidden gap-4 mdl:flex items-center md text-white text-sm font-semibold">
@@ -51,7 +53,7 @@ const Header = () => {
                 to="."
                 className={({ isActive }) =>
                   isActive
-                    ? `p-3 shadow-navLinkShadow transition-shadow rounded-3xl`
+                    ? `p-3 shadow-navLinkShadow transition-shadow duration-300 ease-linear rounded-3xl`
                     : `p-3`
                 }
               >
@@ -63,8 +65,8 @@ const Header = () => {
                 to="movie"
                 className={({ isActive }) =>
                   isActive
-                    ? `shadow-navLinkShadow transition-shadow rounded-3xl`
-                    : `p-3 `
+                    ? `p-3 shadow-navLinkShadow transition-shadow duration-300 ease-linear rounded-3xl`
+                    : `p-3`
                 }
               >
                 Movies
@@ -75,7 +77,7 @@ const Header = () => {
                 to="tv show"
                 className={({ isActive }) =>
                   isActive
-                    ? `p-3 shadow-navLinkShadow transition-shadow rounded-3xl`
+                    ? `p-3 shadow-navLinkShadow transition-shadow duration-300 ease-linear rounded-3xl`
                     : `p-3 `
                 }
               >
@@ -88,7 +90,7 @@ const Header = () => {
                 to="trailer"
                 className={({ isActive }) =>
                   isActive
-                    ? `p-3 shadow-navLinkShadow transition-shadow rounded-3xl`
+                    ? `p-3 shadow-navLinkShadow transition-shadow duration-300 ease-linear rounded-3xl`
                     : `p-3 `
                 }
               >

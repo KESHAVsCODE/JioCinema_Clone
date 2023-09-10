@@ -1,37 +1,56 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-// import showCategories from "../constants/showCategories";
+import { showsCount } from "../constants/showCategories";
 
 const useGetShows = ({ page = 1, limit = 10, type = "", id = "" }) => {
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
   const [showsData, setShowsData] = useState([]);
   const [error, setError] = useState({});
   const [hasNextPage, setHasNextPage] = useState(true);
-  console.log(type);
+  const [showType, setShowType] = useState(type);
+
+  console.log("useGetShows hello");
+
   useEffect(() => {
+    console.log("this is reset useEffect");
+    setShowsData([]);
+    setError({});
+    setHasNextPage(true);
+  }, [showType]);
+
+  useEffect(() => {
+    console.log("Fetch data useEffect");
     setIsLoading(true);
     setError({});
-    axios
-      .get(`https://academics.newtonschool.co/api/v1/ott/show/${id}`, {
-        headers: { projectId: "f104bi07c490" },
-        params: { page, limit, ...(type && { type }) },
-      })
-      .then((res) => {
-        setIsLoading(false);
-        console.log("res.data", res.data);
-        if (id) {
-          setShowsData(res?.data?.data);
-          return;
-        }
-        setShowsData((prevData) => [...prevData, ...res.data.data]);
-      })
-      .catch((e) => {
-        setError(e.response);
-        setIsLoading(false);
-        setHasNextPage(false);
-      });
-  }, [page, limit, type, id]);
-  return { isLoading, error, showsData, hasNextPage };
+    if (showType !== null) {
+      axios
+        .get(`https://academics.newtonschool.co/api/v1/ott/show/${id}`, {
+          headers: { projectId: "f104bi07c490" },
+          params: { page, limit, ...(showType && { type: showType }) },
+        })
+        .then((res) => {
+          setIsLoading(false);
+          if (id) {
+            setShowsData(res?.data?.data);
+            return;
+          }
+          setShowsData((prevData) => [...prevData, ...res.data.data]);
+        })
+        .catch((e) => {
+          if (showsData.length >= showsCount[showType]) setHasNextPage(false);
+          setError(e.response);
+          console.log(e);
+          setIsLoading(false);
+        });
+    }
+  }, [page, limit, showType, id]);
+  return {
+    isLoading,
+    error,
+    showsData,
+    hasNextPage,
+    setShowType,
+  };
 };
 
 export default useGetShows;
