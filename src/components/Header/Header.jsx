@@ -1,10 +1,25 @@
 import { jiocinema_logo, profile_avatar } from "../../assets/images";
-import { NavLink } from "react-router-dom";
+import {
+  NavLink,
+  useNavigate,
+  useSearchParams,
+  useLocation,
+} from "react-router-dom";
+
 import useToggleComponent from "../../hooks/useToggleComponent";
 import SideBar from "./SideBar";
 import { useEffect } from "react";
 const Header = () => {
   const [sideBar, setSideBar, sideBarRef] = useToggleComponent(false);
+  const navigate = useNavigate();
+
+  const [searchParams, setSearchParams] = useSearchParams();
+  const location = useLocation();
+  console.log(location);
+  const handleSearchInputChange = (e) => {
+    if (searchParams.get("showname") !== e.target.value.trim())
+      setSearchParams({ showname: e.target.value.trim() });
+  };
 
   const openSideBar = (e) => {
     e.stopPropagation();
@@ -101,8 +116,16 @@ const Header = () => {
         </nav>
         <nav className="flex">
           <ul className="flex gap-4 lg:gap-2 items-center">
-            <li className="flex border-0 lg:border lg:px-[14px]  border-[#aaa] rounded-3xl focus:border-white overflow-hidden items-center">
+            <li
+              onClick={(e) => {
+                e.preventDefault();
+                if (location.pathname === "/search") return;
+                navigate("/search");
+              }}
+              className="flex border-0 lg:border lg:px-[14px]  border-[#aaa] rounded-3xl focus:border-white overflow-hidden items-center"
+            >
               <input
+                onChange={handleSearchInputChange}
                 type="text"
                 placeholder="Search"
                 className="bg-defaultBackground hidden lg:flex max-w-[170px] p-2 outline-none"

@@ -7,6 +7,7 @@ import Footer from "./components/Footer/Footer";
 import Signin from "./components/Signin/Signin";
 import Registration from "./components/Signin/Registration";
 import Subscription from "./components/Subscription/Subscription";
+import SearchShows from "./components/SearchShows";
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 const App = () => {
   const CustomLayout = () => {
@@ -43,6 +44,7 @@ const App = () => {
               path=":show_type/:show_title/:id"
               element={<MediaShowcase />}
             />
+            <Route path="search" element={<SearchShows />} />
           </Route>
           <Route path="/signin" element={<Signin />} />
           <Route path="/register" element={<Registration />} />
