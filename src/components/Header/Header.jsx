@@ -40,11 +40,12 @@ const Header = () => {
   return (
     <>
       <header className="h-20 flex justify-between px-4 md:px-12 py-3 bg-defaultBackground  sticky top-0 left-0 right-0 z-[999]">
-        <nav className="gap-4 flex">
+        <nav
+          className={`gap-4 flex ${
+            location.pathname === "/search" && "hidden"
+          }`}
+        >
           <ul className=" flex gap-4 items-center">
-            <li className="mdl:hidden" onClick={openSideBar}>
-              <i className="fa-solid fa-bars text-2xl cursor-pointer"></i>
-            </li>
             <li>
               <NavLink to="/">
                 <img
@@ -114,30 +115,60 @@ const Header = () => {
             </li>
           </ul>
         </nav>
-        <nav className="flex">
-          <ul className="flex gap-4 lg:gap-2 items-center">
-            <li
-              onClick={(e) => {
-                e.preventDefault();
-                if (location.pathname === "/search") return;
-                navigate("/search");
-              }}
-              className="flex border-0 lg:border lg:px-[14px]  border-[#aaa] rounded-3xl focus:border-white overflow-hidden items-center"
-            >
-              <input
-                onChange={handleSearchInputChange}
-                type="text"
-                placeholder="Search"
-                className="bg-defaultBackground hidden lg:flex max-w-[170px] p-2 outline-none"
-              />
-              <i className="fa-solid fa-magnifying-glass text-xl py-2"></i>
-            </li>
+        <nav className="flex-grow flex">
+          <ul className="w-full flex gap-4 lg:gap-2 items-center justify-end">
+            {location.pathname === "/search" ? (
+              <li
+                onClick={(e) => {
+                  e.preventDefault();
+                  if (location.pathname === "/search") return;
+                  navigate("/search");
+                }}
+                className="w-full flex border px-[14px]  border-[#aaa] rounded-3xl focus:border-white overflow-hidden items-center"
+              >
+                <i
+                  className="fa-solid fa-arrow-left text-white cursor-pointer text-lg"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    navigate("/");
+                  }}
+                ></i>
+                <input
+                  onChange={handleSearchInputChange}
+                  type="text"
+                  placeholder="Search"
+                  className="w-full bg-defaultBackground  p-2 outline-none"
+                />
+                <i className="fa-solid fa-magnifying-glass text-xl py-2"></i>
+              </li>
+            ) : (
+              <li
+                onClick={(e) => {
+                  e.preventDefault();
+                  if (location.pathname === "/search") return;
+                  navigate("/search");
+                }}
+                className="flex border-0 lg:border lg:px-[14px]  border-[#aaa] rounded-3xl focus:border-white overflow-hidden items-center"
+              >
+                <input
+                  onChange={handleSearchInputChange}
+                  type="text"
+                  placeholder="Search"
+                  className="bg-defaultBackground hidden lg:flex max-w-[170px] p-2 outline-none"
+                />
+                <i className="fa-solid fa-magnifying-glass text-xl py-2"></i>
+              </li>
+            )}
 
             <li
               className="hidden mdl:block cursor-pointer"
               onClick={openSideBar}
             >
               <img src={profile_avatar} alt="profile-avatar" className="w-10" />
+            </li>
+
+            <li className="mdl:hidden" onClick={openSideBar}>
+              <i className="fa-solid fa-bars text-2xl cursor-pointer"></i>
             </li>
           </ul>
         </nav>

@@ -1,11 +1,18 @@
 import useGetShows from "../../hooks/useGetShows";
 import { useParams } from "react-router-dom";
 import { Oval } from "react-loader-spinner";
-
+import showCategories from "../../constants/showCategories";
+import { premium_carousel_icon } from "../../assets/images";
 const MediaShowcase = () => {
   const params = useParams();
 
   const { isLoading, error, showsData } = useGetShows({ id: params?.id });
+
+  const isPremiumContent = (type) => {
+    return showCategories.some(
+      (category) => category.type.toLowerCase() === type && category.premium
+    );
+  };
 
   if (isLoading) {
     return (
@@ -41,6 +48,13 @@ const MediaShowcase = () => {
         className="grid mdl:grid h-[600px]  grid-cols-1 relative "
       >
         <div className="absolute h-full w-full flex flex-col justify-center gap-4  bg-black bg-opacity-40 px-5 sm:px-10 z-20 text-white">
+          {isPremiumContent(showsData.type) && (
+            <img
+              src={premium_carousel_icon}
+              alt="premium-content"
+              className="mb-1 w-20 sm:mb-3 sm:w-28"
+            />
+          )}
           <button className="customButton flex items-center  max-w-max">
             <i className="fa-solid fa-play pr-2 text-base"></i>
             <p>WATCH</p>

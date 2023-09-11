@@ -12,7 +12,10 @@ import appleStore from "./appleStore.svg";
 import googlePlayStore from "./googlePlayStore.svg";
 import jioLogo from "./jio-logo.png";
 import subscriptionPageBg from "./subscriptionPageBg.png";
-
+import premium_carousel_icon from "./premium_carousel_icon.svg";
+import premium_icon from "./premium_icon.svg";
+import nancyDrew from "./nancy-drew.webp";
+import planetIndia from "./planet-india.webp";
 export {
   jiocinema_logo,
   profile_avatar,
@@ -27,4 +30,8 @@ export {
   googlePlayStore,
   jioLogo,
   subscriptionPageBg,
+  premium_carousel_icon,
+  premium_icon,
+  nancyDrew,
+  planetIndia,
 };

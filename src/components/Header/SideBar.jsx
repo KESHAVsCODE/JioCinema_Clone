@@ -2,6 +2,7 @@
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import { profile_avatar } from "../../assets/images";
+import { Link } from "react-router-dom";
 
 const SideBar = ({ setSideBarVisible: { closeSideBar, sideBarRef } }) => {
   const navigate = useNavigate();
@@ -22,7 +23,7 @@ const SideBar = ({ setSideBarVisible: { closeSideBar, sideBarRef } }) => {
       >
         <section
           name="user-info"
-          className=" text-white h-[50px] flex items-center relative"
+          className=" text-white h-[50px] flex items-center relative "
         >
           <div
             className="flex items-center w-full h-full hover:bg-buttonBackground hover:bg-opacity-1 transition-colors duration-150 ease-linear cursor-pointer"
@@ -52,33 +53,45 @@ const SideBar = ({ setSideBarVisible: { closeSideBar, sideBarRef } }) => {
           </span>
         </section>
         <section name="sidebar-items">
-          <ul className="  overscroll-contain h-full  pt-[10px]  text-defaultTextColor">
-            <li className="sideBarItems">
-              <p className="">Movies</p>
-              <span>
-                <i className="fa-solid fa-angle-right"></i>
-              </span>
+          <ul className="overscroll-contain h-full  pt-[10px]  text-defaultTextColor">
+            <li>
+              <Link to="/movie" className="sideBarItems">
+                <p className="">Movies</p>
+                <span>
+                  <i className="fa-solid fa-angle-right"></i>
+                </span>
+              </Link>
             </li>
-            <li className="sideBarItems">
-              <p className="">Subscribe Now!</p>
-              <span>
-                <i className="fa-solid fa-angle-right"></i>
-              </span>
+            <li>
+              <Link to="/subscription" className="sideBarItems">
+                <p className="">Subscribe Now!</p>
+                <span>
+                  <i className="fa-solid fa-angle-right"></i>
+                </span>
+              </Link>
             </li>
-            <li className="sideBarItems">
-              <p className="">WatchList</p>
-              <span>
-                <i className="fa-solid fa-angle-right"></i>
-              </span>
+            <li>
+              <Link to="watchlist" className="sideBarItems">
+                <p className="">WatchList</p>
+                <span>
+                  <i className="fa-solid fa-angle-right"></i>
+                </span>
+              </Link>
             </li>
             <li>
               <hr className="border-t border-defaultBorderColor opacity-30 my-4" />
             </li>
-            <li className="sideBarItems">
-              <p className="">Help & Legal</p>
-              <span>
-                <i className="fa-solid fa-angle-right"></i>
-              </span>
+            <li>
+              <Link
+                to="https://help.jiocinema.com/?uid=82a9dec5-8954-48b7-98c4-08fea6dbc289&name=AuM5QLbF"
+                target="_blank"
+                className="sideBarItems"
+              >
+                <p className="">Help & Legal</p>
+                <span>
+                  <i className="fa-solid fa-angle-right"></i>
+                </span>
+              </Link>
             </li>
             <li className="sideBarItems">
               <p className="">Sign Out</p>
@@ -87,10 +100,15 @@ const SideBar = ({ setSideBarVisible: { closeSideBar, sideBarRef } }) => {
               </span>
             </li>
           </ul>
-          <span className="mx-9 text-pink text-xs font-medium border-b border-pink">
-            Privacy and T&C
-          </span>
         </section>
+        <div className="mx-9 mt-[100%] text-pink underline underline-offset-2 text-xs font-medium defaultLink">
+          <Link
+            to="https://help.jiocinema.com/articles/terms-and-conditions/privacy-policy/641d3829d903444a7aef49b1?uid=82a9dec5-8954-48b7-98c4-08fea6dbc289&name=AuM5QLbF"
+            target="_blank"
+          >
+            Privacy and T&C
+          </Link>
+        </div>
       </motion.div>
     </section>
   );

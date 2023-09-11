@@ -1,11 +1,23 @@
+import { nancyDrew, planetIndia } from "../assets/images";
+
 const showCategories = [
-  { type: "Movie", count: 428 },
-  { type: "Web Series", count: 438 },
-  { type: "Trailer", count: 456 },
-  { type: "Tv Show", count: 434 },
-  { type: "Documentary", count: 482 },
-  { type: "Short Film", count: 450 },
-  { type: "Video Song", count: 424 },
+  { type: "Movie", count: 428, premium: false, featuredShow: null },
+  {
+    type: "Short Film",
+    count: 450,
+    premium: true,
+    featuredShow: nancyDrew,
+  },
+  { type: "Documentary", count: 482, premium: false, featuredShow: null },
+  { type: "Web Series", count: 438, premium: true, featuredShow: null },
+  {
+    type: "Tv Show",
+    count: 434,
+    premium: false,
+    featuredShow: planetIndia,
+  },
+  { type: "Trailer", count: 456, premium: true, featuredShow: null },
+  { type: "Video Song", count: 424, premium: false, featuredShow: null },
 ];
 export const showsCount = {
   movie: 428,

@@ -4,7 +4,8 @@ import { useCallback, useRef, useState } from "react";
 import { Oval } from "react-loader-spinner";
 import useGetShows from "../../hooks/useGetShows";
 import { Link } from "react-router-dom";
-const ShowsSlider = ({ limit = 10, type = "" }) => {
+import { premium_icon } from "../../assets/images";
+const ShowsSlider = ({ limit = 10, type = "", isPremiumContent = false }) => {
   const sliderRef = useRef(null);
   const [page, setPage] = useState(1);
 
@@ -13,8 +14,6 @@ const ShowsSlider = ({ limit = 10, type = "" }) => {
     limit,
     type,
   });
-
-  console.log("this is showData Length", showsData.length);
 
   const observer = useRef();
 
@@ -87,13 +86,24 @@ const ShowsSlider = ({ limit = 10, type = "" }) => {
             );
           }
           return (
-            <li key={show._id} className="snap-start shadow-featuredBoxShadow">
+            <li
+              key={show._id}
+              className="snap-start shadow-featuredBoxShadow relative"
+            >
               <Link to={`${show.type}/${show.title}/${show._id}`}>
                 <img
                   id={show._id}
                   src={show.thumbnail}
                   className="aspect-[3/4] object-center object-cover rounded-xl cursor-pointer "
                 />
+                <div className="absolute inset-0 bg-white rounded-xl  opacity-0 hover:opacity-10 transition-opacity duration-300 "></div>
+                {isPremiumContent && (
+                  <img
+                    src={premium_icon}
+                    alt=""
+                    className="absolute top-1 left-1 "
+                  />
+                )}
               </Link>
             </li>
           );

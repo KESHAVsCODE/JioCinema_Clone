@@ -1,3 +1,4 @@
+import { premium_carousel_icon } from "../../assets/images";
 import featuredShowData from "../../constants/featuredShowData";
 import { useState } from "react";
 const FeaturedShows = () => {
@@ -32,14 +33,21 @@ const FeaturedShows = () => {
                 key={show.id}
                 className="flex min-w-[100%] relative mdl:flex-row-reverse"
               >
-                <div className="absolute bottom-0 lg:bottom-10 left-6 z-20 ">
-                  <h2 className="text-white text-lg sm:text-3xl font-bold">
+                <div className="absolute bottom-5 lg:bottom-10 left-6 z-20 ">
+                  {show.premium && (
+                    <img
+                      src={premium_carousel_icon}
+                      alt="premium-content"
+                      className="mb-1 w-20 sm:mb-3 sm:w-28"
+                    />
+                  )}
+                  <h2 className="text-white text-lg font-semibold sm:text-3xl sm:font-extrabold">
                     {show.title}
                   </h2>
-                  <p className="text-xs font-medium text-defaultTextColor mt-2">
-                    {"Hindi Comedy"}
+                  <p className="text-xs font-semibold text-defaultTextColor sm:mt-2">
+                    {show?.keywords}
                   </p>
-                  <button className="text-white customButton flex items-center mt-4">
+                  <button className="text-white customButton flex items-center mt-2 sm:mt-4">
                     <i className="fa-solid fa-play pr-2 text-base"></i>
                     <p>WATCH</p>
                   </button>
