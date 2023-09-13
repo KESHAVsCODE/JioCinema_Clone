@@ -5,9 +5,11 @@ import { profile_avatar } from "../../assets/images";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux/es/hooks/useSelector";
 import { useDispatch } from "react-redux";
+
 const SideBar = ({ setSideBarVisible: { closeSideBar, sideBarRef } }) => {
   const navigate = useNavigate();
   const userDetails = useSelector((state) => state.signinDetails.userDetails);
+  const isPremiumUser = useSelector((state) => state.isPremiumUser);
 
   const dispatch = useDispatch();
 
@@ -67,14 +69,16 @@ const SideBar = ({ setSideBarVisible: { closeSideBar, sideBarRef } }) => {
                 </span>
               </Link>
             </li>
-            <li>
-              <Link to="/subscription" className="sideBarItems">
-                <p className="">Subscribe Now!</p>
-                <span>
-                  <i className="fa-solid fa-angle-right"></i>
-                </span>
-              </Link>
-            </li>
+            {!isPremiumUser && (
+              <li>
+                <Link to="/subscription" className="sideBarItems">
+                  <p className="">Subscribe Now!</p>
+                  <span>
+                    <i className="fa-solid fa-angle-right"></i>
+                  </span>
+                </Link>
+              </li>
+            )}
             {userDetails?.name && (
               <li>
                 <Link to="watchlist" className="sideBarItems">

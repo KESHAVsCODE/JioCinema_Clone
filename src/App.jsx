@@ -42,7 +42,7 @@ const App = () => {
             <Route index element={<Home />} />
             <Route path=":show_type" element={<ShowType />} />
             <Route
-              path=":show_type/show_title:/:id"
+              path=":show_type/:show_title/:id"
               element={<MediaShowcase />}
             />
             <Route

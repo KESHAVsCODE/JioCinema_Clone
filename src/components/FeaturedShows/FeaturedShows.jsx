@@ -1,9 +1,12 @@
+import { useSelector } from "react-redux";
 import { premium_carousel_icon } from "../../assets/images";
 import featuredShowData from "../../constants/featuredShowData";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 const FeaturedShows = () => {
   const [slideImagePosition, setSlideImagePosition] = useState(0);
+
+  const isPremiumUser = useSelector((state) => state.isPremiumUser);
 
   const handlePrevClick = () => {
     setSlideImagePosition((prevPosition) =>
@@ -49,7 +52,13 @@ const FeaturedShows = () => {
                     {show?.keywords}
                   </p>
                   <Link
-                    to={`${show.type}/${show.title}/${index + 1}/watch`}
+                    to={
+                      isPremiumUser
+                        ? `${show.type}/${show.title}/${index + 1}/watch`
+                        : show.premium
+                        ? "subscription"
+                        : `${show.type}/${show.title}/${index + 1}/watch`
+                    }
                     state={{ showLink: show.video_url }}
                   >
                     <button className="text-white customButton flex items-center mt-2 sm:mt-4">

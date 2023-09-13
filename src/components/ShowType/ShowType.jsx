@@ -2,6 +2,8 @@ import { useParams, Link } from "react-router-dom";
 import useGetShows from "../../hooks/useGetShows";
 import { useRef, useCallback, useState, useEffect } from "react";
 import { Oval } from "react-loader-spinner";
+import { premium_icon } from "../../assets/images";
+import showCategories from "../../constants/showCategories";
 const ShowType = () => {
   const params = useParams();
 
@@ -43,6 +45,12 @@ const ShowType = () => {
     [isLoading, hasNextPage]
   );
 
+  const isPremiumContent = (() => {
+    const type = params.show_type;
+    return showCategories.some(
+      (category) => category.type.toLowerCase() === type && category.premium
+    );
+  })();
   return (
     <section name="show_type" className="p-4 mdl:p-5 mb-10">
       <div className="flex flex-wrap pr-4 mdl:pr-5 scroll-smooth">
@@ -60,6 +68,13 @@ const ShowType = () => {
                   alt={show.title}
                   className="aspect-[3/4] object-center object-cover rounded-xl cursor-pointer"
                 />
+                {isPremiumContent && (
+                  <img
+                    src={premium_icon}
+                    alt=""
+                    className="absolute top-1 left-1 "
+                  />
+                )}
                 <p className="text-center text-sm px-2 pt-2">{show.title}</p>
               </Link>
             );
@@ -77,6 +92,13 @@ const ShowType = () => {
                   className="aspect-[3/4] object-center object-cover rounded-xl cursor-pointer"
                 />
                 <div className="absolute inset-0 bg-white rounded-xl  opacity-0 hover:opacity-10 transition-opacity duration-300 "></div>
+                {isPremiumContent && (
+                  <img
+                    src={premium_icon}
+                    alt=""
+                    className="absolute top-1 left-1 "
+                  />
+                )}
               </div>
               <p className="text-center text-xs font-semibold px-2 pt-2">
                 {show.title}

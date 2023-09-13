@@ -4,9 +4,13 @@ import { Oval } from "react-loader-spinner";
 import showCategories from "../../constants/showCategories";
 import { premium_carousel_icon } from "../../assets/images";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 const MediaShowcase = () => {
   const params = useParams();
 
+  console.log("this is mediashowcase");
+
+  const isPremiumUser = useSelector((state) => state.isPremiumUser);
   const { isLoading, error, showsData } = useGetShows({ id: params?.id });
 
   const isPremiumContent = (type) => {
@@ -56,7 +60,16 @@ const MediaShowcase = () => {
               className="mb-1 w-20 sm:mb-3 sm:w-28"
             />
           )}
-          <Link to="watch" state={{ showLink: showsData.video_url }}>
+          <Link
+            to={
+              isPremiumUser
+                ? "watch"
+                : isPremiumContent(showsData.type)
+                ? "/subscription"
+                : "watch"
+            }
+            state={{ showLink: showsData.video_url }}
+          >
             <button className="customButton flex items-center  max-w-max">
               <i className="fa-solid fa-play pr-2 text-base"></i>
               <p>WATCH</p>

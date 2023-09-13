@@ -79,6 +79,14 @@ const ShowsSlider = ({ limit = 10, type = "", isPremiumContent = false }) => {
                     src={show.thumbnail}
                     className="aspect-[3/4]  object-cover rounded-xl cursor-pointer"
                   />
+                  <div className="absolute inset-0 bg-white rounded-xl  opacity-0 hover:opacity-10 transition-opacity duration-300 "></div>
+                  {isPremiumContent && (
+                    <img
+                      src={premium_icon}
+                      alt=""
+                      className="absolute top-1 left-1 "
+                    />
+                  )}
                 </Link>
               </li>
             );

@@ -15,7 +15,7 @@ const Header = () => {
   const [sideBar, setSideBar, sideBarRef] = useToggleComponent(false);
   const navigate = useNavigate();
 
-  const userDetails = useSelector((signDetails) => signDetails.userDetails);
+  const isPremiumUser = useSelector((state) => state.isPremiumUser);
 
   const [searchParams, setSearchParams] = useSearchParams();
   const location = useLocation();
@@ -59,13 +59,15 @@ const Header = () => {
                 />
               </NavLink>
             </li>
-            <li className="hidden xs:inline-block relative">
-              <NavLink to="subscription">
-                <button className="text-premiumColor px-4 py-1 text-xs font-medium border-2 border-premiumColor rounded-3xl">
-                  Subscribe
-                </button>
-              </NavLink>
-            </li>
+            {!isPremiumUser && (
+              <li className="hidden xs:inline-block relative">
+                <NavLink to="subscription">
+                  <button className="text-premiumColor px-4 py-1 text-xs font-medium border-2 border-premiumColor rounded-3xl">
+                    Subscribe
+                  </button>
+                </NavLink>
+              </li>
+            )}
           </ul>
           <ul className="hidden gap-4 mdl:flex items-center md text-white text-sm font-semibold">
             <li className="">

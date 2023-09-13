@@ -167,7 +167,7 @@ const Subscription = () => {
             transition={{ duration: 0.4 }}
             className={`relative p-4 bg-green-500 font-medium text-white rounded shadow-lg`}
           >
-            Order Placed Successfully!
+            Subscribed Successfully!
           </motion.div>
         </Modal>
       }
