@@ -71,7 +71,7 @@ const ShowsSlider = ({ limit = 10, type = "", isPremiumContent = false }) => {
               <li
                 ref={lastShowRef}
                 key={show._id}
-                className="snap-start shadow-featuredBoxShadow"
+                className="snap-start shadow-featuredBoxShadow relative"
               >
                 <Link to={`${show.type}/${show.title}/${show._id}`}>
                   <img

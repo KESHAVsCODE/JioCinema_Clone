@@ -42,7 +42,7 @@ const Subscription = () => {
   useEffect(() => {
     const intervalId = setInterval(() => {
       handleNextClick();
-    }, [5000]);
+    }, [3000]);
     return () => clearInterval(intervalId);
   }, []);
 
