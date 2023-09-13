@@ -60,7 +60,7 @@ const ShowsSlider = ({ limit = 10, type = "", isPremiumContent = false }) => {
       <ul
         ref={sliderRef}
         name="slider"
-        className="grid grid-flow-col auto-cols-[27%] sm:auto-cols-[17%] lg:auto-cols-[11%] px-4 gap-4 overflow-x-scroll   smooth-scroll no-scrollbar 
+        className="grid grid-flow-col auto-cols-[27%] sm:auto-cols-[17%] lg:auto-cols-[11%] px-4 gap-4 overflow-x-scroll smooth-scroll no-scrollbar 
         
         "
         //{snap-inline}
@@ -71,7 +71,7 @@ const ShowsSlider = ({ limit = 10, type = "", isPremiumContent = false }) => {
               <li
                 ref={lastShowRef}
                 key={show._id}
-                className="snap-start shadow-featuredBoxShadow relative"
+                className="snap-start shadow-featuredBoxShadow relative bg-[#FFFFFF1F] rounded-xl"
               >
                 <Link to={`${show.type}/${show.title}/${show._id}`}>
                   <img
@@ -79,7 +79,7 @@ const ShowsSlider = ({ limit = 10, type = "", isPremiumContent = false }) => {
                     src={show.thumbnail}
                     className="aspect-[3/4]  object-cover rounded-xl cursor-pointer"
                   />
-                  <div className="absolute inset-0 bg-white rounded-xl  opacity-0 hover:opacity-10 transition-opacity duration-300 "></div>
+                  <div className="absolute inset-0 bg-white rounded-xl  opacity-0 hover:opacity-[.15] transition-opacity duration-300 "></div>
                   {isPremiumContent && (
                     <img
                       src={premium_icon}
@@ -94,7 +94,7 @@ const ShowsSlider = ({ limit = 10, type = "", isPremiumContent = false }) => {
           return (
             <li
               key={show._id}
-              className="snap-start shadow-featuredBoxShadow relative"
+              className="snap-start shadow-featuredBoxShadow relative  bg-[#FFFFFF1F] rounded-xl"
             >
               <Link to={`${show.type}/${show.title}/${show._id}`}>
                 <img
@@ -102,7 +102,7 @@ const ShowsSlider = ({ limit = 10, type = "", isPremiumContent = false }) => {
                   src={show.thumbnail}
                   className="aspect-[3/4] object-center object-cover rounded-xl cursor-pointer "
                 />
-                <div className="absolute inset-0 bg-white rounded-xl  opacity-0 hover:opacity-10 transition-opacity duration-300 "></div>
+                <div className="absolute inset-0 bg-white rounded-xl  opacity-0 hover:opacity-[0.15] transition-opacity duration-300 "></div>
                 {isPremiumContent && (
                   <img
                     src={premium_icon}
@@ -115,7 +115,7 @@ const ShowsSlider = ({ limit = 10, type = "", isPremiumContent = false }) => {
           );
         })}
         {isLoading && (
-          <li key="loading" className=" self-center ">
+          <li key="loading" className="p-4 self-center">
             <Oval
               height={50}
               width={50}

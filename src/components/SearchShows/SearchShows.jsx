@@ -3,7 +3,8 @@ import { Link, useSearchParams } from "react-router-dom";
 import { Oval } from "react-loader-spinner";
 
 const SearchShows = () => {
-  const { isLoading, error, showsData } = useGetShows({ limit: 500 });
+  const { error, showsData } = useGetShows({ limit: 500 });
+  const isLoading = true;
 
   const [searchParams] = useSearchParams();
 
@@ -39,13 +40,13 @@ const SearchShows = () => {
               to={`${show.title}/${show._id}`}
               className="pl-4 pt-4 mdl:pl-5 mdl:pt-5 w-1/2 xs:w-1/3 md:w-1/4 mdl:w-1/6 featuredBoxShadow "
             >
-              <div className="relative">
+              <div className="relative bg-[#FFFFFF1F] rounded-xl">
                 <img
                   src={show.thumbnail}
                   alt={show.title}
                   className="aspect-[3/4] object-center object-cover rounded-xl cursor-pointer"
                 />
-                <div className="absolute inset-0 bg-white rounded-xl  opacity-0 hover:opacity-10 transition-opacity duration-300 "></div>
+                <div className="absolute inset-0 bg-white rounded-xl  opacity-0 hover:opacity-[.15] transition-opacity duration-300 "></div>
               </div>
               <p className="text-center text-xs font-semibold px-2 pt-2">
                 {show.title}
@@ -54,13 +55,13 @@ const SearchShows = () => {
           );
         })}
         {isLoading && (
-          <div key="loading" className="pl-4 m-auto ">
+          <div key="loading" className="p-4 flex-1">
             <Oval
               height={50}
               width={50}
               color="#d9008d"
-              wrapperStyle={{}}
-              wrapperClass=""
+              wrapperStyle={{ justifyContent: "center", alignItems: "center" }}
+              wrapperClass=" "
               visible={true}
               ariaLabel="oval-loading"
               secondaryColor="##d9008d"
