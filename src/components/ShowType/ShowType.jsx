@@ -21,15 +21,6 @@ const ShowType = () => {
     setShowType(params.show_type);
   }, [params.show_type]);
 
-  console.log(
-    "Show Type : ",
-    params.show_type,
-    isLoading,
-    `pageNumber : ${page}`,
-    showsData,
-    hasNextPage
-  );
-
   const observer = useRef();
 
   //when lastShowRef corresponding element created then this callback will be called

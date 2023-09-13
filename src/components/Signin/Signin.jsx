@@ -2,9 +2,10 @@ import { jiocinema_logo } from "../../assets/images";
 import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import { useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-// import { userSignin } from "../../redux/signin/signinAction";
+import { getAuth } from "firebase/auth";
+import { userSignin } from "../../redux/signinAction";
 
-// import Error from "./Error";
+import Error from "./Error";
 import { RotatingLines } from "react-loader-spinner";
 import { motion } from "framer-motion";
 
@@ -12,6 +13,7 @@ const SignIn = () => {
   const emailRef = useRef({});
   const passwordRef = useRef({});
 
+  const auth = getAuth();
   const location = useLocation();
 
   const navigate = useNavigate();
@@ -41,22 +43,25 @@ const SignIn = () => {
       setUserDetailsErrors({ ...errors });
     }
 
-    // dispatch(userSignin(auth, navigate, location, { email, password }));
+    dispatch(userSignin(auth, navigate, location, { email, password }));
   };
 
   return (
-    <section name="signin" className="h-[100%]">
-      <div className="w-[350px] mx-auto flex flex-col items-center">
+    <section
+      name="signin"
+      className="h-screen bg-defaultBackground overflow-y-scroll"
+    >
+      <div className="max-w-[350px] mx-auto flex flex-col items-center">
         <NavLink to="/">
           <div>
             <img className="py-4" src={jiocinema_logo} alt="jiocinema-logo" />
           </div>
         </NavLink>
 
-        {/* {signinDetails.loading ? (
+        {signinDetails.loading ? (
           <div className="mb-4">
             <RotatingLines
-              strokeColor="#febd69"
+              strokeColor="#d9008d"
               strokeWidth="5"
               animationDuration="0.75"
               width="50"
@@ -75,13 +80,13 @@ const SignIn = () => {
             initial={{ x: 100, opacity: 0 }}
             animate={{ x: 0, opacity: 1 }}
             transition={{ duration: 0.5 }}
-            className={`fixed bottom-4 right-4 p-4 bg-green-500 rounded shadow-lg`}
+            className={`fixed bottom-4 text-white right-4 p-4 bg-green-500 rounded shadow-lg`}
           >
             SingIn successful!
           </motion.div>
         ) : (
           ""
-        )} */}
+        )}
         <section className="border border-lightGray rounded-lg px-6 py-4">
           <form
             noValidate

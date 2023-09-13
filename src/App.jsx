@@ -8,6 +8,7 @@ import Signin from "./components/Signin/Signin";
 import Registration from "./components/Signin/Registration";
 import Subscription from "./components/Subscription/Subscription";
 import SearchShows from "./components/SearchShows";
+import WatchShow from "./components/MediaShowcase/WatchShow";
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 const App = () => {
   const CustomLayout = () => {
@@ -41,8 +42,12 @@ const App = () => {
             <Route index element={<Home />} />
             <Route path=":show_type" element={<ShowType />} />
             <Route
-              path=":show_type/:show_title/:id"
+              path=":show_type/show_title:/:id"
               element={<MediaShowcase />}
+            />
+            <Route
+              path=":show_type/:show_title/:id/watch"
+              element={<WatchShow />}
             />
             <Route path="search" element={<SearchShows />} />
           </Route>

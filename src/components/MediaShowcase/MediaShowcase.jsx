@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import { Oval } from "react-loader-spinner";
 import showCategories from "../../constants/showCategories";
 import { premium_carousel_icon } from "../../assets/images";
+import { Link } from "react-router-dom";
 const MediaShowcase = () => {
   const params = useParams();
 
@@ -55,11 +56,12 @@ const MediaShowcase = () => {
               className="mb-1 w-20 sm:mb-3 sm:w-28"
             />
           )}
-          <button className="customButton flex items-center  max-w-max">
-            <i className="fa-solid fa-play pr-2 text-base"></i>
-            <p>WATCH</p>
-          </button>
-
+          <Link to="watch" state={{ showLink: showsData.video_url }}>
+            <button className="customButton flex items-center  max-w-max">
+              <i className="fa-solid fa-play pr-2 text-base"></i>
+              <p>WATCH</p>
+            </button>
+          </Link>
           <h2 className="text-xl  sm:text-4xl font-bold">{showsData.title}</h2>
           <p className="text-sm sm:text-lg ">{showsData.description}</p>
 

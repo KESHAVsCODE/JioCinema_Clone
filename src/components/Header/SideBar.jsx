@@ -3,11 +3,13 @@ import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import { profile_avatar } from "../../assets/images";
 import { Link } from "react-router-dom";
-
+import { useSelector } from "react-redux/es/hooks/useSelector";
+import { useDispatch } from "react-redux";
 const SideBar = ({ setSideBarVisible: { closeSideBar, sideBarRef } }) => {
   const navigate = useNavigate();
-  //   const userDetails = useSelector((state) => state.signinDetails.userDetails);
-  const userDetails = {};
+  const userDetails = useSelector((state) => state.signinDetails.userDetails);
+
+  const dispatch = useDispatch();
 
   return (
     <section
@@ -53,7 +55,10 @@ const SideBar = ({ setSideBarVisible: { closeSideBar, sideBarRef } }) => {
           </span>
         </section>
         <section name="sidebar-items">
-          <ul className="overscroll-contain h-full  pt-[10px]  text-defaultTextColor">
+          <ul
+            onClick={() => closeSideBar()}
+            className="overscroll-contain h-full  pt-[10px]  text-defaultTextColor"
+          >
             <li>
               <Link to="/movie" className="sideBarItems">
                 <p className="">Movies</p>
@@ -70,14 +75,16 @@ const SideBar = ({ setSideBarVisible: { closeSideBar, sideBarRef } }) => {
                 </span>
               </Link>
             </li>
-            <li>
-              <Link to="watchlist" className="sideBarItems">
-                <p className="">WatchList</p>
-                <span>
-                  <i className="fa-solid fa-angle-right"></i>
-                </span>
-              </Link>
-            </li>
+            {userDetails?.name && (
+              <li>
+                <Link to="watchlist" className="sideBarItems">
+                  <p className="">WatchList</p>
+                  <span>
+                    <i className="fa-solid fa-angle-right"></i>
+                  </span>
+                </Link>
+              </li>
+            )}
             <li>
               <hr className="border-t border-defaultBorderColor opacity-30 my-4" />
             </li>
@@ -93,12 +100,17 @@ const SideBar = ({ setSideBarVisible: { closeSideBar, sideBarRef } }) => {
                 </span>
               </Link>
             </li>
-            <li className="sideBarItems">
-              <p className="">Sign Out</p>
-              <span>
-                <i className="fa-solid fa-angle-right"></i>
-              </span>
-            </li>
+            {userDetails?.name && (
+              <li
+                onClick={() => dispatch({ type: "reset_store" })}
+                className="sideBarItems"
+              >
+                <p className="">Sign Out</p>
+                <span>
+                  <i className="fa-solid fa-angle-right"></i>
+                </span>
+              </li>
+            )}
           </ul>
         </section>
         <div className="mx-9 mt-[100%] text-pink underline underline-offset-2 text-xs font-medium defaultLink">

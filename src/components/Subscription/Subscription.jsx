@@ -1,15 +1,43 @@
 import { useState, useEffect } from "react";
 import { premiumShowSlides } from "../../assets/premiumShowSlides";
 import { subscriptionPageBg } from "../../assets/images";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { motion } from "framer-motion";
+import { Modal, useMantineTheme } from "@mantine/core";
+import { useDisclosure } from "@mantine/hooks";
+import { useDispatch } from "react-redux";
+
 const Subscription = () => {
   const [slideImagePosition, setSlideImagePosition] = useState(0);
+
+  const theme = useMantineTheme();
+  const [opened, { open, close }] = useDisclosure(false);
 
   const handleNextClick = () => {
     setSlideImagePosition((prevPosition) =>
       prevPosition === -(premiumShowSlides.length - 1) ? 0 : prevPosition - 1
     );
   };
+
+  const dispatch = useDispatch();
+
+  const handleBuySubscription = () => {
+    if (!userDetails?.name) {
+      return navigate("/signin", {
+        state: { originPath: location.pathname },
+      });
+    }
+    dispatch({ type: "buy_subscription" });
+    open(true);
+    setTimeout(() => {
+      navigate("/");
+    }, [2000]);
+  };
+
+  const navigate = useNavigate();
+
+  const userDetails = useSelector((state) => state.signinDetails.userDetails);
 
   useEffect(() => {
     const intervalId = setInterval(() => {
@@ -108,11 +136,41 @@ const Subscription = () => {
           </p>
 
           {/* // */}
-          <button className="customButton sm:text-lg  font-semibold rounded-3xl">
+          <button
+            onClick={handleBuySubscription}
+            className="customButton sm:text-lg  font-semibold rounded-3xl"
+          >
             Continue and pay ₹999
           </button>
         </div>
       </div>
+      {
+        <Modal
+          opened={opened}
+          onClose={close}
+          withCloseButton={false}
+          centered
+          size="auto"
+          padding="0"
+          overlayProps={{
+            color:
+              theme.colorScheme === "dark"
+                ? theme.colors.dark[9]
+                : theme.colors.gray[2],
+            opacity: 0.55,
+            blur: 3,
+          }}
+        >
+          <motion.div
+            initial={{ scale: 0, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            transition={{ duration: 0.4 }}
+            className={`relative p-4 bg-green-500 font-medium text-white rounded shadow-lg`}
+          >
+            Order Placed Successfully!
+          </motion.div>
+        </Modal>
+      }
     </section>
   );
 };

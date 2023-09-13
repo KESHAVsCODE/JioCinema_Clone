@@ -7,7 +7,6 @@ const ListOfShows = () => {
     <section name="shows">
       <ul>
         {showCategories.map((showCategory) => {
-          console.log("showCategories.premium", showCategory.premium);
           return (
             <li key={showCategory.type.toLowerCase()} className="pb-10">
               {showCategory.featuredShow && (

@@ -43,8 +43,6 @@ const ShowsSlider = ({ limit = 10, type = "", isPremiumContent = false }) => {
   const handleNextClick = () => {
     sliderRef.current.scrollLeft += sliderRef.current.offsetWidth;
   };
-  console.dir(sliderRef);
-  console.log("hasNextPage", hasNextPage);
   return (
     <section
       name="slider-container"
@@ -62,7 +60,7 @@ const ShowsSlider = ({ limit = 10, type = "", isPremiumContent = false }) => {
       <ul
         ref={sliderRef}
         name="slider"
-        className="grid grid-flow-col auto-cols-[27%] sm:auto-cols-[17%] lg:auto-cols-[11%] px-4 gap-4 overflow-x-scroll overscroll-contain smooth-scroll no-scrollbar 
+        className="grid grid-flow-col auto-cols-[27%] sm:auto-cols-[17%] lg:auto-cols-[11%] px-4 gap-4 overflow-x-scroll   smooth-scroll no-scrollbar 
         
         "
         //{snap-inline}
@@ -135,7 +133,6 @@ const ShowsSlider = ({ limit = 10, type = "", isPremiumContent = false }) => {
         onClick={handleNextClick}
         className={`
           absolute flex opacity-0 group-hover:opacity-100 bg-gradient-to-l from-[#222] z-[100] top-0 bottom-0 right-0  px-2 items-center transition-opacity duration-300 ease-linear cursor-pointer
-          
           `}
       >
         <i className="fa-solid fa-angle-right text-white text-3xl"></i>

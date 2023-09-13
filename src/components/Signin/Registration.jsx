@@ -4,12 +4,21 @@ import { NavLink } from "react-router-dom";
 import Error from "./Error";
 import { useNavigate } from "react-router-dom";
 import { RotatingLines } from "react-loader-spinner";
-// import { motion } from "framer-motion";
+import { motion } from "framer-motion";
+import {
+  getAuth,
+  createUserWithEmailAndPassword,
+  updateProfile,
+} from "firebase/auth";
+import { app } from "../../../firebase.config";
+console.log(app);
 
 const Registration = () => {
   const [isLoading, setLoading] = useState(false);
   const [isSignupSuccess, setSignupSuccess] = useState("Pending");
   const [registrationError, setRegistrationError] = useState("");
+
+  const auth = getAuth();
 
   const navigate = useNavigate();
 
@@ -61,18 +70,58 @@ const Registration = () => {
     }
 
     //registration started
+    setLoading(true);
+    createUserWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+        // Signed in
+        const user = userCredential.user;
+        console.log(user);
+
+        // Set the user's name (displayName)
+        updateProfile(user, {
+          displayName: name,
+          photoURL: "", // You can optionally set a photo URL as well
+        })
+          .then(() => {
+            console.log("Name (displayName) set successfully.");
+          })
+          .catch((error) => {
+            console.error("Error setting name (displayName):", error);
+          });
+
+        //registration successful
+        setLoading(false);
+        setSignupSuccess("Success");
+        setRegistrationError("");
+
+        setTimeout(() => {
+          setSignupSuccess("Pending");
+          navigate("/signin");
+        }, 2000);
+
+        console.log(user);
+      })
+      .catch((error) => {
+        const errorMessage = error.message;
+        console.log(errorMessage);
+
+        //registration failed
+        setLoading(false);
+        setSignupSuccess("Failed");
+        setRegistrationError(errorMessage);
+      });
   };
 
   return (
-    <section name="registration" className="h-[100%] ">
-      <section className="w-[350px] mx-auto flex flex-col items-center">
+    <section name="registration" className="h-screen overflow-y-scroll ">
+      <section className="max-w-[350px] mx-auto flex flex-col items-center">
         <NavLink to="/">
           <div>
             <img className="py-4" src={jiocinema_logo} alt="jiocinema-logo" />
           </div>
         </NavLink>
 
-        {/* {isLoading ? (
+        {isLoading ? (
           <div className="mb-4">
             <RotatingLines
               strokeColor="#d9008d"
@@ -87,7 +136,7 @@ const Registration = () => {
             initial={{ x: 100, opacity: 0 }}
             animate={{ x: 0, opacity: 1 }}
             transition={{ duration: 0.5 }}
-            className={`fixed bottom-4 right-4 p-4 bg-green-500 rounded shadow-lg`}
+            className={`fixed text-white bottom-4 right-4 p-4 bg-green-500 rounded shadow-lg`}
           >
             Registration successful!
           </motion.div>
@@ -98,7 +147,7 @@ const Registration = () => {
           />
         ) : (
           ""
-        )} */}
+        )}
 
         <section className="border border-lightGray rounded-lg px-6 py-4">
           <form

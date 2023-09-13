@@ -9,13 +9,17 @@ import {
 import useToggleComponent from "../../hooks/useToggleComponent";
 import SideBar from "./SideBar";
 import { useEffect } from "react";
+import { useSelector } from "react-redux";
+
 const Header = () => {
   const [sideBar, setSideBar, sideBarRef] = useToggleComponent(false);
   const navigate = useNavigate();
 
+  const userDetails = useSelector((signDetails) => signDetails.userDetails);
+
   const [searchParams, setSearchParams] = useSearchParams();
   const location = useLocation();
-  console.log(location);
+
   const handleSearchInputChange = (e) => {
     if (searchParams.get("showname") !== e.target.value.trim())
       setSearchParams({ showname: e.target.value.trim() });

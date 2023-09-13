@@ -9,17 +9,13 @@ const useGetShows = ({ page = 1, limit = 10, type = "", id = "" }) => {
   const [hasNextPage, setHasNextPage] = useState(true);
   const [showType, setShowType] = useState(type);
 
-  console.log("useGetShows hello");
-
   useEffect(() => {
-    console.log("this is reset useEffect");
     setShowsData([]);
     setError({});
     setHasNextPage(true);
   }, [showType]);
 
   useEffect(() => {
-    console.log("Fetch data useEffect");
     setIsLoading(true);
     setError({});
     if (showType !== null) {

@@ -28,7 +28,8 @@ export default {
         pink: "#d9008d",
         footerItemColor: "#D9D6E5",
         inputPlaceholderColor: "rgb(140, 140, 140)",
-        error: "#e77600",
+        // error: "#e77600",
+        error: "#ff0043",
       },
 
       borderColor: {
@@ -44,6 +45,7 @@ export default {
         navLinkShadow: "0 0 1px 1px #fff",
         inputBoxShadow: "inset 0 1px 2px rgba(15,17,17,.15) ",
         focusInputBoxShadow: "0 0 3px 2px rgb(228 121 17 / 50%)",
+        errorShadow: "0 0 0 4px #d9008d inset;",
       },
       flex: {
         // "1/2": "0 0 50%",
