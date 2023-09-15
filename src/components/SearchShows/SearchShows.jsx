@@ -3,9 +3,9 @@ import { Link, useSearchParams } from "react-router-dom";
 import { Oval } from "react-loader-spinner";
 
 const SearchShows = () => {
-  const { error, showsData } = useGetShows({ limit: 500 });
-  const isLoading = true;
+  const { isLoading, error, showsData } = useGetShows({ limit: 500 });
 
+  console.log(showsData.length);
   const [searchParams] = useSearchParams();
 
   const searchKey = searchParams.get("showname");
