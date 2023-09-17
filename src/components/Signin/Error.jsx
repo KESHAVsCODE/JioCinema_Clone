@@ -19,7 +19,9 @@ const Error = ({ email, errorMessage }) => {
             (error.includes("too-many-requests") &&
               "Too many requests. Please try logging in again after some time.") ||
             (error.includes("invalid-email") &&
-              "Please enter a valid email address")}
+              "Please enter a valid email address") ||
+            (error.includes("invalid-login-credentials") &&
+              "Invalid login credentials")}
         </p>
       </div>
     </section>

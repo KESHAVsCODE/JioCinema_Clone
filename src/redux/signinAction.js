@@ -26,6 +26,7 @@ export const userSignin = (auth, navigate, location, { email, password }) => {
         }, 1000);
       })
       .catch((error) => {
+        console.dir(error.code);
         dispatch(signinFailed(error.message));
       });
   };

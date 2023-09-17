@@ -5,7 +5,7 @@ import { Oval } from "react-loader-spinner";
 import useGetShows from "../../hooks/useGetShows";
 import { Link } from "react-router-dom";
 import { premium_icon } from "../../assets/images";
-const ShowsSlider = ({ limit = 10, type = "", isPremiumContent = false }) => {
+const ShowsSlider = ({ limit = 20, type = "", isPremiumContent = false }) => {
   const sliderRef = useRef(null);
   const [page, setPage] = useState(1);
 
@@ -60,13 +60,13 @@ const ShowsSlider = ({ limit = 10, type = "", isPremiumContent = false }) => {
       <ul
         ref={sliderRef}
         name="slider"
-        className="grid grid-flow-col auto-cols-[27%] sm:auto-cols-[17%] lg:auto-cols-[11%] px-4 gap-4 overflow-x-scroll smooth-scroll no-scrollbar 
+        className="grid grid-flow-col auto-cols-[27%] sm:auto-cols-[17%] lg:auto-cols-[11%] px-4 gap-4 overflow-x-scroll smooth-scroll no-scrollbar
         
         "
         //{snap-inline}
       >
         {showsData?.map((show, index) => {
-          if (index === showsData.length - 1) {
+          if (index === showsData.length - 10) {
             return (
               <li
                 ref={lastShowRef}

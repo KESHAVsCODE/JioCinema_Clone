@@ -22,7 +22,7 @@ const SideBar = ({ setSideBarVisible: { closeSideBar, sideBarRef } }) => {
         ref={sideBarRef}
         initial={{ x: "100%", opacity: 0 }}
         animate={{ x: 0, opacity: 1 }}
-        transition={{ duration: 0.5 }}
+        transition={{ duration: 0.3, type: "spring", stiffness: 100 }}
         className="w-[80%] md:w-[365px] h-full bg-defaultBackground border border-black absolute top-0 right-0 z-[999]"
       >
         <section

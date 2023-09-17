@@ -10,13 +10,16 @@ import Subscription from "./components/Subscription/Subscription";
 import SearchShows from "./components/SearchShows";
 import WatchShow from "./components/MediaShowcase/WatchShow";
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
+import ScrollToTop from "./hooks/scrollToTop";
 const App = () => {
   const CustomLayout = () => {
     return (
       <>
         <Header />
+
         <main>
           <Outlet />
+          <ScrollToTop />
         </main>
         <Footer />
       </>
