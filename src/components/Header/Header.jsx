@@ -8,7 +8,7 @@ import {
 
 import useToggleComponent from "../../hooks/useToggleComponent";
 import SideBar from "./SideBar";
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import { useSelector } from "react-redux";
 
 const Header = () => {
@@ -17,12 +17,22 @@ const Header = () => {
 
   const isPremiumUser = useSelector((state) => state.isPremiumUser);
 
+  const timeoutId = useRef(null);
+
   const [searchParams, setSearchParams] = useSearchParams();
   const location = useLocation();
 
+  //use debounce technique
+  const updateSearchParams = (text) => {
+    clearTimeout(timeoutId.current);
+    timeoutId.current = setTimeout(() => {
+      setSearchParams({ showname: text.trim() });
+    }, 1000);
+  };
+
   const handleSearchInputChange = (e) => {
     if (searchParams.get("showname") !== e.target.value.trim())
-      setSearchParams({ showname: e.target.value.trim() });
+      updateSearchParams(e.target.value);
   };
 
   const openSideBar = (e) => {

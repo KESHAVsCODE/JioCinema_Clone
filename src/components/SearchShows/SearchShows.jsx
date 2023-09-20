@@ -5,7 +5,6 @@ import { Oval } from "react-loader-spinner";
 const SearchShows = () => {
   const { isLoading, error, showsData } = useGetShows({ limit: 500 });
 
-  console.log(showsData.length);
   const [searchParams] = useSearchParams();
 
   const searchKey = searchParams.get("showname");
