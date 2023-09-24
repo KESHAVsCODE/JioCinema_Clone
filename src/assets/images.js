@@ -16,7 +16,10 @@ import premium_carousel_icon from "./premium_carousel_icon.svg";
 import premium_icon from "./premium_icon.svg";
 import nancyDrew from "./nancy-drew.webp";
 import planetIndia from "./planet-india.webp";
+
+import watch from "./watch.svg";
 export {
+  watch,
   jiocinema_logo,
   profile_avatar,
   aquamanImage,

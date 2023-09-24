@@ -73,7 +73,7 @@ const ShowsSlider = ({ limit = 20, type = "", isPremiumContent = false }) => {
                 key={show._id}
                 className="snap-start shadow-featuredBoxShadow relative bg-[#FFFFFF1F] rounded-xl"
               >
-                <Link to={`${show.type}/${show.title}/${show._id}`}>
+                <Link to={`/${show.type}/${show.title}/${show._id}`}>
                   <img
                     id={show._id}
                     src={show.thumbnail}
@@ -96,7 +96,7 @@ const ShowsSlider = ({ limit = 20, type = "", isPremiumContent = false }) => {
               key={show._id}
               className="snap-start shadow-featuredBoxShadow relative  bg-[#FFFFFF1F] rounded-xl"
             >
-              <Link to={`${show.type}/${show.title}/${show._id}`}>
+              <Link to={`/${show.type}/${show.title}/${show._id}`}>
                 <img
                   id={show._id}
                   src={show.thumbnail}
