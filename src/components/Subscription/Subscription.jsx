@@ -58,7 +58,7 @@ const Subscription = () => {
           style={{
             transform: `translateX(${slideImagePosition * 100}%)`,
           }}
-          className="flex transition-transform duration-500"
+          className=" flex transition-transform duration-500"
         >
           {premiumShowSlides.map((slide, index) => {
             return (

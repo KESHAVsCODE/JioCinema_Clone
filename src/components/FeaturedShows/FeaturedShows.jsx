@@ -3,6 +3,7 @@ import { premium_carousel_icon } from "../../assets/images";
 import featuredShowData from "../../constants/featuredShowData";
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import AddToWatchlist from "../AddToWatchlist/AddToWatchlist";
 const FeaturedShows = () => {
   const [slideImagePosition, setSlideImagePosition] = useState(0);
 
@@ -51,21 +52,25 @@ const FeaturedShows = () => {
                   <p className="text-xs font-semibold text-defaultTextColor sm:mt-2">
                     {show?.keywords}
                   </p>
-                  <Link
-                    to={
-                      isPremiumUser
-                        ? `${show.type}/${show.title}/${index + 1}/watch`
-                        : show.premium
-                        ? "subscription"
-                        : `${show.type}/${show.title}/${index + 1}/watch`
-                    }
-                    state={{ showLink: show.video_url }}
-                  >
-                    <button className="text-white customButton flex items-center mt-2 sm:mt-4">
-                      <i className="fa-solid fa-play pr-2 text-base"></i>
-                      <p>WATCH</p>
-                    </button>
-                  </Link>
+                  <div className="flex gap-4 items-center mt-2 sm:mt-4 ">
+                    <Link
+                      to={
+                        isPremiumUser
+                          ? `${show.type}/${show.title}/${index + 1}/watch`
+                          : show.premium
+                          ? "subscription"
+                          : `${show.type}/${show.title}/${index + 1}/watch`
+                      }
+                      state={{ showLink: show.video_url }}
+                    >
+                      <button className="text-white customButton flex items-center">
+                        <i className="fa-solid fa-play pr-2 text-base"></i>
+                        <p>WATCH</p>
+                      </button>
+                    </Link>
+
+                    <AddToWatchlist id={show.id} />
+                  </div>
                 </div>
                 <div className="w-[100%] mdl:w-[60%] relative">
                   <img src={show.image} alt="show-image" />

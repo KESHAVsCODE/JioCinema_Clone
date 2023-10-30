@@ -9,6 +9,7 @@ import {
 } from "../assets/images";
 const featuredShowData = [
   {
+    id: "featuredShow1",
     title: "Rocketry: The Nambi Effect",
     keywords: "हि, En ∙ Biography ∙ U/A 13+",
     type: "Movie",
@@ -21,6 +22,7 @@ const featuredShowData = [
       "https://newton-project-resume-backend.s3.amazonaws.com/video/64cffee700bad552e8dcd509.mp4",
   },
   {
+    id: "featuredShow2",
     title: "Taali",
     type: "Web Series",
     keywords: "Hindi ∙ Biopic ∙ U/A 16+",
@@ -33,6 +35,7 @@ const featuredShowData = [
       "https://newton-project-resume-backend.s3.amazonaws.com/video/64cffee700bad552e8dcd50b.mp4",
   },
   {
+    id: "featuredShow3",
     title: "The Lord Of The Rings: The Two Towers",
     type: "Movie",
     keywords: "English ∙ Adventure ∙ U/A 13+",
@@ -45,6 +48,7 @@ const featuredShowData = [
       "https://newton-project-resume-backend.s3.amazonaws.com/video/64cffee700bad552e8dcd50d.mp4",
   },
   {
+    id: "featuredShow4",
     title: "Aquaman",
     type: "Movie",
     keywords: "En, हि, +2 more ∙ Action ∙ U/A 13+",
@@ -57,6 +61,7 @@ const featuredShowData = [
       "https://newton-project-resume-backend.s3.amazonaws.com/video/64cffee700bad552e8dcd50f.mp4",
   },
   {
+    id: "featuredShow5",
     title: "New Amsterdam",
     keywords: "English ∙ Drama ∙ U/A 16+",
     type: "Web Series",
