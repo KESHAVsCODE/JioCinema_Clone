@@ -6,7 +6,9 @@ import { premium_carousel_icon } from "../../assets/images";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import ShowsSlider from "../ListOfShows/ShowsSlider";
+import AddToWatchlist from "../Watchlist/AddToWatchlist";
 const MediaShowcase = () => {
+  const userDetails = useSelector((state) => state.signinDetails.userDetails);
   const params = useParams();
 
   const isPremiumUser = useSelector((state) => state.isPremiumUser);
@@ -89,6 +91,10 @@ const MediaShowcase = () => {
                 <p>WATCH</p>
               </button>
             </Link>
+
+            {userDetails?.name && (
+              <AddToWatchlist id={params?.id} showData={showsData} />
+            )}
 
             {isPremiumContent(showsData.type) && (
               <img

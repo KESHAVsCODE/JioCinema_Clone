@@ -3,7 +3,7 @@ import { premium_carousel_icon } from "../../assets/images";
 import featuredShowData from "../../constants/featuredShowData";
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import AddToWatchlist from "../AddToWatchlist/AddToWatchlist";
+
 const FeaturedShows = () => {
   const [slideImagePosition, setSlideImagePosition] = useState(0);
 
@@ -68,8 +68,6 @@ const FeaturedShows = () => {
                         <p>WATCH</p>
                       </button>
                     </Link>
-
-                    <AddToWatchlist id={show.id} />
                   </div>
                 </div>
                 <div className="w-[100%] mdl:w-[60%] relative">
@@ -97,14 +95,14 @@ const FeaturedShows = () => {
           <div className="flex-grow flex justify-center">
             <button
               onClick={handlePrevClick}
-              className="border w-12 h-12 rounded-full mr-4 "
+              className="border w-12 h-12 rounded-full mr-4 hover:bg-[#222]"
             >
               <i className="fa fa-arrow-left text-lg"></i>
             </button>
 
             <button
               onClick={handleNextClick}
-              className="border w-12 h-12 rounded-full"
+              className="border w-12 h-12 rounded-full hover:bg-[#222]"
             >
               <i className="fa fa-arrow-right text-lg"></i>
             </button>

@@ -9,6 +9,7 @@ import Registration from "./components/Signin/Registration";
 import Subscription from "./components/Subscription/Subscription";
 import SearchShows from "./components/SearchShows";
 import WatchShow from "./components/MediaShowcase/WatchShow";
+import Watchlist from "./components/Watchlist/Watchlist";
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 import ScrollToTop from "./hooks/scrollToTop";
 const App = () => {
@@ -16,7 +17,6 @@ const App = () => {
     return (
       <>
         <Header />
-
         <main>
           <Outlet />
           <ScrollToTop />
@@ -53,6 +53,7 @@ const App = () => {
               element={<WatchShow />}
             />
             <Route path="search" element={<SearchShows />} />
+            <Route path="watchlist" element={<Watchlist />} />
           </Route>
           <Route path="/signin" element={<Signin />} />
           <Route path="/register" element={<Registration />} />
